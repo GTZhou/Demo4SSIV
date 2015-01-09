@@ -2,16 +2,17 @@ package cn.com.tarena.web.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import cn.com.tarena.pojo.Student;
+import cn.com.tarena.service.StudentService;
+import cn.com.tarena.service.impl.StudentServiceImpl;
 
 
 
@@ -21,6 +22,19 @@ public class StudentListServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		try{
+			StudentService studentService = new StudentServiceImpl();
+			
+			List studentList = studentService.getStudentList();
+			
+			showStudentList(resp, studentList);			
+		} catch (Exception e){
+			showError(resp,e.getMessage());
+		}
+	}
+
+	private void showStudentList(HttpServletResponse resp, List studentList)
+			throws IOException {
 		PrintWriter out = resp.getWriter();
 		
 		out.println("<html>");
@@ -39,44 +53,37 @@ public class StudentListServlet extends HttpServlet{
 		out.println("		<th>HOBBIES</th>");
 		out.println("	</tr>");
 
-		Connection conn = null;
-		
-		Statement stmt = null;
-		
-		ResultSet rs = null;
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
+		for(Iterator<Student> it = studentList.iterator();it.hasNext();){
+			Student student = it.next();
 			
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "root");
-			
-			stmt = conn.createStatement();
-			
-			rs = stmt.executeQuery("select * from student");
-			
-			while(rs.next()){
-				out.println("	<tr>");
-				out.println("		<td>" + rs.getString("USER_NAME") + "</td>");
-				out.println("		<td>" + rs.getString("PASSWORD") + "</td>");
-				out.println("		<td>" + rs.getString("PROVINCE") + "</td>");
-				out.println("		<td>" + rs.getString("GENDER") + "</td>");
-				out.println("		<td>" + rs.getString("HOBBIES") + "</td>");
-				out.println("	</tr>");				
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new ServletException("error when querying students!",e);
-		} finally {
-			try {
-				rs.close();
-				stmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}		
+			out.println("	<tr>");
+			out.println("		<td>" + student.getUserName() + "</td>");
+			out.println("		<td>" + student.getPassword() + "</td>");
+			out.println("		<td>" + student.getProvince() + "</td>");
+			out.println("		<td>" + student.getGender() + "</td>");
+			out.println("		<td>" + student.getProvince() + "</td>");
+			out.println("	</tr>");	
+		}
 		
 		out.println("</table>");
+		out.println("</body>");
+		out.println("</html>");
+		
+		out.close();
+	}
+	
+	private void showError(HttpServletResponse resp, String message)
+			throws IOException {
+		PrintWriter out = resp.getWriter();
+		
+		out.println("<html>");
+		out.println("<head>");
+		out.println("	<title>Error</title>");
+		out.println("</head>");
+		out.println("<body>");
+		out.println("<h2 align=\"center\">System Error</h2>");
+		out.println("<hr>");
+		out.println(message);
 		out.println("</body>");
 		out.println("</html>");
 		
