@@ -19,4 +19,14 @@
   	<servlet-name>CurrentTimeServlet</servlet-name>
   	<url-pattern>/currentTime</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>StudentListServlet</servlet-name>
+  	<servlet-class>cn.com.tarena.web.servlet.StudentListServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>StudentListServlet</servlet-name>
+  	<url-pattern>/studentList</url-pattern>
+  </servlet-mapping>
 </web-app>
