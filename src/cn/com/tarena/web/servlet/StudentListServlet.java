@@ -2,13 +2,18 @@ package cn.com.tarena.web.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+
 
 public class StudentListServlet extends HttpServlet{
 
@@ -33,26 +38,49 @@ public class StudentListServlet extends HttpServlet{
 		out.println("		<th>GENDER</th>");
 		out.println("		<th>HOBBIES</th>");
 		out.println("	</tr>");
-		out.println("	<tr>");
-		out.println("		<td>ZhouYu</td>");
-		out.println("		<td>111</td>");
-		out.println("		<td>Shanghai</td>");
-		out.println("		<td>male</td>");
-		out.println("		<td>Game</td>");
-		out.println("	</tr>");
-		out.println("	<tr>");
-		out.println("		<td>Tom</td>");
-		out.println("		<td>123</td>");
-		out.println("		<td>&nbsp;</td>");
-		out.println("		<td>male</td>");
-		out.println("		<td>Mouse</td>");
-		out.println("	</tr>");
+
+		Connection conn = null;
+		
+		Statement stmt = null;
+		
+		ResultSet rs = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "root");
+			
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery("select * from student");
+			
+			while(rs.next()){
+				out.println("	<tr>");
+				out.println("		<td>" + rs.getString("USER_NAME") + "</td>");
+				out.println("		<td>" + rs.getString("PASSWORD") + "</td>");
+				out.println("		<td>" + rs.getString("PROVINCE") + "</td>");
+				out.println("		<td>" + rs.getString("GENDER") + "</td>");
+				out.println("		<td>" + rs.getString("HOBBIES") + "</td>");
+				out.println("	</tr>");				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ServletException("error when querying students!",e);
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+		
 		out.println("</table>");
 		out.println("</body>");
 		out.println("</html>");
 		
 		out.close();
-		
 	}
 
 	@Override
@@ -60,7 +88,4 @@ public class StudentListServlet extends HttpServlet{
 			throws ServletException, IOException {
 		doGet(req,resp);
 	}
-	
-	
-
 }
