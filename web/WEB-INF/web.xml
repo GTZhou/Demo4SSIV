@@ -15,18 +15,39 @@
   	<servlet-class>cn.com.tarena.web.servlet.CurrentTimeServlet</servlet-class>
   </servlet>
   
-  <servlet-mapping>
-  	<servlet-name>CurrentTimeServlet</servlet-name>
-  	<url-pattern>/currentTime</url-pattern>
-  </servlet-mapping>
-  
   <servlet>
   	<servlet-name>StudentListServlet</servlet-name>
   	<servlet-class>cn.com.tarena.web.servlet.StudentListServlet</servlet-class>
   </servlet>
   
+  <servlet>
+  	<servlet-name>ErrorServlet</servlet-name>
+  	<servlet-class>cn.com.tarena.web.servlet.ErrorServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+  	<servlet-name>ControllerServlet</servlet-name>
+  	<servlet-class>cn.com.tarena.web.controller.ControllerServlet</servlet-class>
+  </servlet>
+  
+  
+  <servlet-mapping>
+  	<servlet-name>CurrentTimeServlet</servlet-name>
+  	<url-pattern>/currentTime</url-pattern>
+  </servlet-mapping>
+  
   <servlet-mapping>
   	<servlet-name>StudentListServlet</servlet-name>
   	<url-pattern>/studentList</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>ErrorServlet</servlet-name>
+  	<url-pattern>/error</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>ControllerServlet</servlet-name>
+  	<url-pattern>*.asp</url-pattern>
   </servlet-mapping>
 </web-app>
