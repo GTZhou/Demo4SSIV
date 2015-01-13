@@ -29,8 +29,15 @@
   	<servlet-name>ControllerServlet</servlet-name>
   	<servlet-class>cn.com.tarena.web.controller.ControllerServlet</servlet-class>
   </servlet>
-  
-  
+  <servlet>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<servlet-class>cn.com.tarena.web.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>WelcomeServlet</servlet-name>
+  	<servlet-class>cn.com.tarena.web.servlet.WelcomeServlet</servlet-class>
+  </servlet>
+    
   <servlet-mapping>
   	<servlet-name>CurrentTimeServlet</servlet-name>
   	<url-pattern>/currentTime</url-pattern>
@@ -44,6 +51,14 @@
   <servlet-mapping>
   	<servlet-name>ErrorServlet</servlet-name>
   	<url-pattern>/error</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>WelcomeServlet</servlet-name>
+  	<url-pattern>/welcome</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
