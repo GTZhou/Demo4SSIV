@@ -1,7 +1,6 @@
 package cn.com.tarena.service.impl;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -9,6 +8,7 @@ import java.util.List;
 
 import cn.com.tarena.pojo.Student;
 import cn.com.tarena.service.StudentService;
+import cn.com.tarena.util.ConnectionFactory;
 
 public class StudentServiceImpl implements StudentService {
 
@@ -24,10 +24,7 @@ public class StudentServiceImpl implements StudentService {
 		ResultSet rs = null;
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-
-			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/test", "root", "root");
+			conn = ConnectionFactory.getConnection();
 
 			stmt = conn.createStatement();
 
@@ -71,10 +68,7 @@ public class StudentServiceImpl implements StudentService {
 		ResultSet rs = null;
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-
-			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/test", "root", "root");
+			conn = ConnectionFactory.getConnection();
 
 			stmt = conn.createStatement();
 
