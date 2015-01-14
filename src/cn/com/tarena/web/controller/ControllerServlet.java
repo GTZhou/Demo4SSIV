@@ -62,6 +62,8 @@ public class ControllerServlet extends HttpServlet{
 			if(student != null){
 				req.setAttribute("student", student);
 				
+				req.getSession().setAttribute("student", student);
+				
 				getServletContext().getRequestDispatcher("/welcome").forward(req, resp);
 			}else{
 				req.getSession().setAttribute("message", "The user was not found");

@@ -18,7 +18,11 @@ public class LoginServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		Student student = (Student)req.getAttribute("student");
+		String userName = "";
+		
+		if(req.getSession().getAttribute("student") != null){
+			userName = ((Student)req.getSession().getAttribute("student")).getUserName();
+		}
 		
 		PrintWriter out = resp.getWriter();
 		
@@ -35,7 +39,7 @@ public class LoginServlet extends HttpServlet{
 		}
 		
 		out.println("<form action=\"doLogin.asp\" method=\"post\">");
-		out.println("	Username:<input name=\"userName\" type=\"text\"><br>");
+		out.println("	Username:<input name=\"userName\" type=\"text\" value=\"" + userName + "\"><br>");
 		out.println("	Password:<input name=\"password\" type=\"password\"><br>");
 		out.println("	<input type=\"submit\" value=\"login\">");
 		out.println("</form>");
