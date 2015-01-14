@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import cn.com.tarena.pojo.Student;
 import cn.com.tarena.service.StudentService;
-import cn.com.tarena.service.impl.StudentServiceImpl;
+import cn.com.tarena.util.ServiceFactory;
 
 
 
@@ -28,7 +28,7 @@ public class ControllerServlet extends HttpServlet{
 		
 		if("/toStudentList".equals(path)){
 			try{
-				StudentService studentService = new StudentServiceImpl();
+				StudentService studentService = ServiceFactory.getStudentService();
 				
 				List studentList = studentService.getStudentList();
 				
@@ -55,7 +55,7 @@ public class ControllerServlet extends HttpServlet{
 			paramStudent.setUserName(userName);
 			paramStudent.setPassword(password);
 			
-			StudentService studentService = new StudentServiceImpl();
+			StudentService studentService = ServiceFactory.getStudentService();
 			
 			Student student = studentService.getStudentByUserNameAndPassword(paramStudent);
 			
