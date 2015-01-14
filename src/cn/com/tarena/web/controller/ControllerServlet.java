@@ -21,8 +21,10 @@ public class ControllerServlet extends HttpServlet{
 			throws ServletException, IOException {
 		
 		String path = req.getServletPath();
-		
-		path = path.substring(0,path.indexOf("."));
+
+		String pathSuffix = path.split("\\.")[1];
+
+		path = path.split("\\.")[0];
 		
 		if("/toStudentList".equals(path)){
 			try{
@@ -42,6 +44,8 @@ public class ControllerServlet extends HttpServlet{
 		}else if("/toLogin".equals(path)){
 			getServletContext().getRequestDispatcher("/login").forward(req, resp);
 			
+			req.getSession().removeAttribute("message");
+			
 		} else if("/doLogin".equals(path)){
 			String userName = req.getParameter("userName");			
 			String password = req.getParameter("password");
@@ -60,9 +64,9 @@ public class ControllerServlet extends HttpServlet{
 				
 				getServletContext().getRequestDispatcher("/welcome").forward(req, resp);
 			}else{
-				req.setAttribute("message", "The user was not found");
+				req.getSession().setAttribute("message", "The user was not found");
 				
-				getServletContext().getRequestDispatcher("/login").forward(req, resp);
+				resp.sendRedirect(getServletContext().getContextPath() + "/toLogin." + pathSuffix);
 			}
 			
 		} else {

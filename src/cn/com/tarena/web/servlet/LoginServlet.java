@@ -30,8 +30,8 @@ public class LoginServlet extends HttpServlet{
 		out.println("<h2 align=\"center\">Login</h2>");
 		out.println("<hr>");
 		
-		if(req.getAttribute("message") != null){
-			out.println(req.getAttribute("message"));			
+		if(req.getSession().getAttribute("message") != null){
+			out.println(req.getSession().getAttribute("message"));			
 		}
 		
 		out.println("<form action=\"doLogin.asp\" method=\"post\">");
