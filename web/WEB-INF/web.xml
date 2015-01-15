@@ -19,6 +19,15 @@
   	<url-pattern>/toStudentList.asp</url-pattern>
   </filter-mapping>
   
+  <filter>
+  	<filter-name>ControllerFilter</filter-name>
+  	<filter-class>cn.com.tarena.web.controller.ControllerFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>ControllerFilter</filter-name>
+  	<url-pattern>*.asp</url-pattern>
+  </filter-mapping>
+  
   <servlet>
   	<servlet-name>CurrentTimeServlet</servlet-name>
   	<servlet-class>cn.com.tarena.web.servlet.CurrentTimeServlet</servlet-class>
@@ -70,8 +79,10 @@
   	<url-pattern>/welcome</url-pattern>
   </servlet-mapping>
   
+  <!--
   <servlet-mapping>
   	<servlet-name>ControllerServlet</servlet-name>
   	<url-pattern>*.asp</url-pattern>
   </servlet-mapping>
+   -->
 </web-app>
