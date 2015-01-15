@@ -26,7 +26,15 @@ public class ControllerServlet extends HttpServlet{
 
 		path = path.split("\\.")[0];
 		
+		getServletContext().setAttribute("pathSuffix", pathSuffix);
+		
 		if("/toStudentList".equals(path)){
+			if(!"1".equals(req.getSession().getAttribute("IS_LOGIN"))){
+				resp.sendRedirect(getServletContext().getContextPath() + "/toLogin." + pathSuffix);
+				
+				return;
+			}
+			
 			try{
 				StudentService studentService = ServiceFactory.getStudentService();
 				
@@ -62,6 +70,8 @@ public class ControllerServlet extends HttpServlet{
 			Student student = studentService.getStudentByUserNameAndPassword(paramStudent);
 			
 			if(student != null){
+				req.getSession().setAttribute("IS_LOGIN", "1");
+				
 				req.setAttribute("student", student);
 				
 				req.getSession().setAttribute("student", student);
