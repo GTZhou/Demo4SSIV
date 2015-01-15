@@ -20,8 +20,8 @@ public class LoginServlet extends HttpServlet{
 		
 		String userName = "";
 		
-		if(req.getSession().getAttribute("student") != null){
-			userName = ((Student)req.getSession().getAttribute("student")).getUserName();
+		if(req.getSession().getAttribute("paramStudent") != null){
+			userName = ((Student)req.getSession().getAttribute("paramStudent")).getUserName();
 		}
 		
 		PrintWriter out = resp.getWriter();

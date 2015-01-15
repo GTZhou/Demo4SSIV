@@ -55,6 +55,8 @@ public class ControllerServlet extends HttpServlet{
 			paramStudent.setUserName(userName);
 			paramStudent.setPassword(password);
 			
+			req.getSession().setAttribute("paramStudent", paramStudent);
+			
 			StudentService studentService = ServiceFactory.getStudentService();
 			
 			Student student = studentService.getStudentByUserNameAndPassword(paramStudent);
