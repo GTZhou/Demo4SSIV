@@ -85,4 +85,8 @@
   	<url-pattern>*.asp</url-pattern>
   </servlet-mapping>
    -->
+   
+  <listener>
+	<listener-class>cn.com.tarena.web.listener.ContextListener</listener-class>
+  </listener>
 </web-app>
