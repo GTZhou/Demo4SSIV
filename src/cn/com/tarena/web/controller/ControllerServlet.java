@@ -28,13 +28,7 @@ public class ControllerServlet extends HttpServlet{
 		
 		getServletContext().setAttribute("pathSuffix", pathSuffix);
 		
-		if("/toStudentList".equals(path)){
-			if(!"1".equals(req.getSession().getAttribute("IS_LOGIN"))){
-				resp.sendRedirect(getServletContext().getContextPath() + "/toLogin." + pathSuffix);
-				
-				return;
-			}
-			
+		if("/toStudentList".equals(path)){			
 			try{
 				StudentService studentService = ServiceFactory.getStudentService();
 				

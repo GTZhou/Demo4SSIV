@@ -10,6 +10,15 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
+  <filter>
+  	<filter-name>LoginFilter</filter-name>
+  	<filter-class>cn.com.tarena.web.filter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>LoginFilter</filter-name>
+  	<url-pattern>/toStudentList.asp</url-pattern>
+  </filter-mapping>
+  
   <servlet>
   	<servlet-name>CurrentTimeServlet</servlet-name>
   	<servlet-class>cn.com.tarena.web.servlet.CurrentTimeServlet</servlet-class>
