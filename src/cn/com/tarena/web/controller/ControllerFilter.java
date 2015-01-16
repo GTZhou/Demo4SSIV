@@ -50,15 +50,15 @@ public class ControllerFilter implements Filter {
 				
 				req.setAttribute("studentList", studentList);
 				
-				getServletContext().getRequestDispatcher("/studentList").forward(req, resp);
+				getServletContext().getRequestDispatcher("/studentList.vm").forward(req, resp);
 				
 			} catch (Exception e){
 				req.setAttribute("message", e.getMessage());
 				
-				getServletContext().getRequestDispatcher("/error").forward(req, resp);
+				getServletContext().getRequestDispatcher("/error.vm").forward(req, resp);
 			}			
 		}else if("/toLogin".equals(path)){
-			getServletContext().getRequestDispatcher("/login").forward(req, resp);
+			getServletContext().getRequestDispatcher("/login.vm").forward(req, resp);
 			
 			req.getSession().removeAttribute("message");
 			
@@ -84,7 +84,7 @@ public class ControllerFilter implements Filter {
 				
 				req.getSession().setAttribute("student", student);
 				
-				getServletContext().getRequestDispatcher("/welcome").forward(req, resp);
+				getServletContext().getRequestDispatcher("/welcome.vm").forward(req, resp);
 			}else{
 				req.getSession().setAttribute("message", "The user was not found");
 				

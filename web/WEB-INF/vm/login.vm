@@ -1,0 +1,15 @@
+<html>
+<head>
+	<title>Login</title>
+</head>
+<body>
+<h2 align="center">Login</h2>
+<hr>
+$!session.getAttribute("message")
+<form action="doLogin.asp" method="post">
+	Username:<input name="userName" type="text" value="$!session.getAttribute("paramStudent").userName"><br>
+	Password:<input name="password" type="password"><br>
+	<input type="submit" value="login">
+</form>
+</body>
+</html>

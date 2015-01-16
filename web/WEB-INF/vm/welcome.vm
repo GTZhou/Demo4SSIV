@@ -1,0 +1,11 @@
+<html>
+<head>
+	<title>Welcome</title>
+</head>
+<body>
+<h2 align="center">Welcome</h2>
+<hr>
+Welcome back,$request.getAttribute("student").userName!<br>
+<a href="toStudentList.$context.getAttribute("pathSuffix")">to StudentList</a>
+</body>
+</html>

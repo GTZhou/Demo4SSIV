@@ -29,6 +29,15 @@
   </filter-mapping>
   
   <servlet>
+  	<servlet-name>VelocityServlet</servlet-name>
+  	<servlet-class>cn.com.tarena.web.servlet.VelocityServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>VelocityServlet</servlet-name>
+  	<url-pattern>*.vm</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>CurrentTimeServlet</servlet-name>
   	<servlet-class>cn.com.tarena.web.servlet.CurrentTimeServlet</servlet-class>
   </servlet>

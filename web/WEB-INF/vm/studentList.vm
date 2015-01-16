@@ -1,0 +1,27 @@
+<html>
+<head>
+	<title>StudentList</title>
+</head>
+<body>
+<h2 align="center">StudentList</h2>
+<hr>
+<table border="1" align="center">
+	<tr>
+		<th>USER_NAME</th>
+		<th>PASSWORD</th>
+		<th>PROVINCE</th>
+		<th>GENDER</th>
+		<th>HOBBIES</th>
+	</tr>
+	#foreach($student in $request.getAttribute("studentList"))
+	<tr>
+		<td>$student.userName</td>
+		<td>$student.password</td>
+		<td>$student.province</td>
+		<td>$student.gender</td>
+		<td>$student.hobbies</td>
+	</tr>
+	#end
+</table>
+</body>
+</html>

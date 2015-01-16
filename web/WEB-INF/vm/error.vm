@@ -1,0 +1,10 @@
+<html>
+<head>
+	<title>Error</title>
+</head>
+<body>
+<h2 align="center">System Error</h2>
+<hr>
+$request.getAttribute("message").
+</body>
+</html>
